@@ -284,7 +284,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"token/USDT.sol": "USDT"
+			"contracts/token/USDT.sol": "USDT"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -298,7 +298,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"interfaces/IERC20.sol": {
+		"contracts/interfaces/IERC20.sol": {
 			"keccak256": "0xa10692a388f8cf3134dee3f010b7bc785634d7db5f9cdca242248a93f157ae6f",
 			"license": "MIT",
 			"urls": [
@@ -306,7 +306,7 @@
 				"dweb:/ipfs/QmRnzyBFNSQwW7X8kyeVdBMGxeTYYFVmuFXZdRnL5Z8swt"
 			]
 		},
-		"interfaces/IERC20Meta.sol": {
+		"contracts/interfaces/IERC20Meta.sol": {
 			"keccak256": "0x848772f3b0501c2f99c9b4c346403ae8ed76b7299236fa813d95c59c724524f6",
 			"license": "MIT",
 			"urls": [
@@ -314,7 +314,7 @@
 				"dweb:/ipfs/QmcwmpbLneLLFAZSDxt8bof6E31fSeEi6uLW37nDMBKwK8"
 			]
 		},
-		"token/ERC20Upgradeable.sol": {
+		"contracts/token/ERC20Upgradeable.sol": {
 			"keccak256": "0xa3134632e06f605954d8f2489e88c63580ff5fee27fcdc0c3a70f90c5db18ee8",
 			"license": "MIT",
 			"urls": [
@@ -322,7 +322,7 @@
 				"dweb:/ipfs/Qma8YvRGKW6oaSHSnd9FU9Mv238y1pPVoCUoH3t6SHbPyW"
 			]
 		},
-		"token/USDT.sol": {
+		"contracts/token/USDT.sol": {
 			"keccak256": "0x8493483249d49f895150f00826ae2f8f9bdc64e7f0e66d8c2a9f42ad6d50e53e",
 			"license": "MIT",
 			"urls": [
@@ -330,7 +330,7 @@
 				"dweb:/ipfs/QmWwre1cQrETLUJgNeWpJNnrjbpn6AsYWKjktmHWxVT89S"
 			]
 		},
-		"utils/Init.sol": {
+		"contracts/utils/Init.sol": {
 			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
 			"license": "MIT",
 			"urls": [

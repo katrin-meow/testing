@@ -27,7 +27,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"utils/Init.sol": "Init"
+			"contracts/utils/Init.sol": "Init"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -41,7 +41,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"utils/Init.sol": {
+		"contracts/utils/Init.sol": {
 			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
 			"license": "MIT",
 			"urls": [

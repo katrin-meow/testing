@@ -22,6 +22,25 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "getPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "owner_",
 						"type": "address"
 					}
@@ -162,7 +181,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"protocol/PriceOracle.sol": "PriceOracle"
+			"contracts/protocol/PriceOracle.sol": "PriceOracle"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -176,7 +195,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"acess/Ownable.sol": {
+		"contracts/acess/Ownable.sol": {
 			"keccak256": "0x9a087a010e405326c1b499a70a1bed094a8517285d60dad8fe765bd3f47a66f8",
 			"license": "MIT",
 			"urls": [
@@ -184,15 +203,15 @@
 				"dweb:/ipfs/QmSy4tEuWQoFyVeyzRr5ZjF2MwV3xCNr4tVq2EbqEkwiWF"
 			]
 		},
-		"protocol/PriceOracle.sol": {
-			"keccak256": "0x0c6752b2aaad08e6f7269020ac6e7e58d333f03198dffdd96f9f11463222ccbd",
+		"contracts/protocol/PriceOracle.sol": {
+			"keccak256": "0x636c1b87f218b915d903bd38764933447b7a7f7efa56932e9cd0a784f8e03a0f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://87949ac7f1e2e1b95a0f0e89399e08e30bb8c959ebcc9d4d5400a079cdd0c3a5",
-				"dweb:/ipfs/QmZ1DWDhxTEZRZMZ3BUDNkzAK1XfRCJKDUysXpPmn6WMu5"
+				"bzz-raw://fae87fd034eaf702dc774b311f7d72bdb5ad59ce6246ea3fb0cde5ec0b9df598",
+				"dweb:/ipfs/QmbZrwzhxMDbbin2Ln7GR2JRqkRuKjuJE9t2MxzCnb2Lc4"
 			]
 		},
-		"proxy/UUPSUpgradeable.sol": {
+		"contracts/proxy/UUPSUpgradeable.sol": {
 			"keccak256": "0x934248c6a5fa885fb7f4f00a0732b6d9680018076f0472df070c87c111ec721b",
 			"license": "MIT",
 			"urls": [
@@ -200,7 +219,7 @@
 				"dweb:/ipfs/QmcHmap1ruPKM7nBwPHT4jrscpBZ5s8fw3vqBXksXyGTKD"
 			]
 		},
-		"utils/Init.sol": {
+		"contracts/utils/Init.sol": {
 			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
 			"license": "MIT",
 			"urls": [

@@ -1,0 +1,869 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "assets",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdraw",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "market_",
+						"type": "address"
+					}
+				],
+				"name": "addMarket",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "market_",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "allocateToMarket",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "asset",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"name": "convertToAssets",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets_",
+						"type": "uint256"
+					}
+				],
+				"name": "convertToShares",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "market_",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "deallocateTomarket",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "deposit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "idleLiquidity",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner_",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "asset_",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "title_",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "shareName_",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "shareSymbol_",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "minDeposit_",
+						"type": "uint256"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isMarket",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "markets",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "minDeposit",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "mint",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets_",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "ownershipTransfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "proxiableUUID",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "redeem",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets_",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "title",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalAssets",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "total",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "upgradeTo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "upgradeToAndCall",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "assets_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "owner_",
+						"type": "address"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "shares",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Срабатывает при изменении allowance."
+				},
+				"Deposit(address,address,uint256,uint256)": {
+					"details": "Событие при deposit/mint."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Срабатывает при переводе токенов."
+				},
+				"Withdraw(address,address,address,uint256,uint256)": {
+					"details": "Событие при withdraw/redeem."
+				}
+			},
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"allowance(address,address)": {
+					"notice": "Текущий allowance от owner к spender."
+				},
+				"approve(address,uint256)": {
+					"notice": "Установка allowance для spender."
+				},
+				"asset()": {
+					"notice": "Адрес базового актива."
+				},
+				"balanceOf(address)": {
+					"notice": "Баланс аккаунта."
+				},
+				"convertToAssets(uint256)": {
+					"notice": "Конвертация shares в активы."
+				},
+				"mint(uint256,address)": {
+					"notice": "Выпуск shares за соответствующее количество активов."
+				},
+				"proxiableUUID()": {
+					"notice": "UUID UUPS-слота по EIP-1822."
+				},
+				"redeem(uint256,address,address)": {
+					"notice": "Погашение shares в актив."
+				},
+				"totalAssets()": {
+					"notice": "Общие активы под управлением."
+				},
+				"totalSupply()": {
+					"notice": "Общее количество токенов."
+				},
+				"transfer(address,uint256)": {
+					"notice": "Перевод токенов получателю."
+				},
+				"transferFrom(address,address,uint256)": {
+					"notice": "Перевод токенов по allowance."
+				},
+				"upgradeTo(address)": {
+					"notice": "Обновить implementation."
+				},
+				"upgradeToAndCall(address,bytes)": {
+					"notice": "Обновить implementation и сразу вызвать migration-хук."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"protocol/Vault.sol": "Vault"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"acess/Ownable.sol": {
+			"keccak256": "0x9a087a010e405326c1b499a70a1bed094a8517285d60dad8fe765bd3f47a66f8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://021d1a9e64af60c52498dca2d93017c43665847dcfe8fa92fac56936651eb0e5",
+				"dweb:/ipfs/QmSy4tEuWQoFyVeyzRr5ZjF2MwV3xCNr4tVq2EbqEkwiWF"
+			]
+		},
+		"interfaces/IERC20.sol": {
+			"keccak256": "0xa10692a388f8cf3134dee3f010b7bc785634d7db5f9cdca242248a93f157ae6f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3c06e9ae67b0f75df4a03e95a92fa62cde601d84163fd5c3bd3a130ce28ecf1a",
+				"dweb:/ipfs/QmRnzyBFNSQwW7X8kyeVdBMGxeTYYFVmuFXZdRnL5Z8swt"
+			]
+		},
+		"interfaces/IERC20Meta.sol": {
+			"keccak256": "0x848772f3b0501c2f99c9b4c346403ae8ed76b7299236fa813d95c59c724524f6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8191a8c82873537fc0166aa9529ff96fb5f581b33cecf043ad0142611b9ca894",
+				"dweb:/ipfs/QmcwmpbLneLLFAZSDxt8bof6E31fSeEi6uLW37nDMBKwK8"
+			]
+		},
+		"interfaces/IERC4626.sol": {
+			"keccak256": "0xde3cc8e1b3f485328f89f88cae50bcf20028353b668ddc7282f2dde90541964e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://82d2e3edc95451017cd50a821ce01e9dd092631bc40e6f0143e3742a01d6f14b",
+				"dweb:/ipfs/QmP9CroA2h5oRGekfaBXFB2ayaW8CYq7sEeVjEwDmt8cJa"
+			]
+		},
+		"interfaces/IMarket.sol": {
+			"keccak256": "0xe19aee83531b60e499e4b4e8b1f0eb9b69a14c5ac576eb6d2058b314eaf3f51f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a46792b922f958f5088695032e72db51287f74e2ab3a334e3e71a2ae1e19b904",
+				"dweb:/ipfs/QmPA7YTrqC71NM5CukgStTthNq8nzGkcQUn8o8kaqS6sML"
+			]
+		},
+		"protocol/Vault.sol": {
+			"keccak256": "0x684a7645b05e5e49043429a9317dfc7bb0656dc273c788410383c49a1345dcc3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://496eb229ed925e88814781e0a4d2078a046fef1eb06a3405fabc925962eddf87",
+				"dweb:/ipfs/QmPRVYBBFYM6aFGCGrTXMbsQ8wr7gJt4JdUH4qWii2MYof"
+			]
+		},
+		"proxy/UUPSUpgradeable.sol": {
+			"keccak256": "0x934248c6a5fa885fb7f4f00a0732b6d9680018076f0472df070c87c111ec721b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d6ee342244f113cd822f365791bf6fd8e9bc9ef7e944e3ff371ce3b3726256f7",
+				"dweb:/ipfs/QmcHmap1ruPKM7nBwPHT4jrscpBZ5s8fw3vqBXksXyGTKD"
+			]
+		},
+		"token/ERC20Upgradeable.sol": {
+			"keccak256": "0xa3134632e06f605954d8f2489e88c63580ff5fee27fcdc0c3a70f90c5db18ee8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://39e5fd52ddb7e8ca433e4a4ac97573975d00cdfa28febcad7ca732f57787fa14",
+				"dweb:/ipfs/Qma8YvRGKW6oaSHSnd9FU9Mv238y1pPVoCUoH3t6SHbPyW"
+			]
+		},
+		"token/ERC4626Upgradeable.sol": {
+			"keccak256": "0x02601c9565b23f20ccad573ee1b9e184c3bd22c7be049f7988218898b9771075",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6dd47d97a97603b797f7b29b3bb730154ad1ed7a1ccf9e5ab5a71fe35d73e1d7",
+				"dweb:/ipfs/QmWWyBh7JnLJrg69TdtgfXxaaJeWxYJQDvmSbbzxCnyGCw"
+			]
+		},
+		"utils/Init.sol": {
+			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1a29b3e3d824643c9524b7fd61fba4463c02044de7f9ea91891b3510f1390cfb",
+				"dweb:/ipfs/QmYWB7bVHracatng2dXqsxvwWKoSJvHA9zhtT5MtA4paE1"
+			]
+		}
+	},
+	"version": 1
+}

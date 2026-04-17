@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liquidity pritocol</title>
+    <style>
+        body {
+            background-color: pink;
+        }
+
+        .vault_1 {
+            border: 2px solid red;
+            width: 21rem;
+        }
+
+        .vault_2 {
+            border: 2px solid rgb(191, 0, 255);
+            width: 21rem;
+        }
+
+        .market_1 {
+            border: 2px solid rgb(191, 0, 255);
+            width: 21rem;
+        }
+
+        .market_2 {
+            border: 2px solid rgb(21, 255, 0);
+            width: 21rem;
+        }
+
+        .market_3 {
+            border: 2px solid rgb(53, 2, 2);
+            width: 21rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>профессионалы 2026</h1>
+    <button class="connectWalletBtn">Подключить кошелек</button>
+
+
+    <div class="vault_1">
+
+        <h2>Депозит в Vault 1(USDC)</h2>
+        Количество токенов: <input type="number" placeholder="1" required min="1" class="depVault1">
+        <button class="depositVault1">внести</button>
+
+        <h2>Вывод депозита из Vault 1</h2>
+        Количество токенов: <input type="number" placeholder="1" required min="1" class="withVault1">
+        <button class="withdrawVault1">вывести</button>
+    </div>
+
+
+    <div class="vault_2">
+        <div>
+            <h2>Депозит в Vault 2(PyUSD)</h2>
+            Количество токенов: <input type="number" placeholder="1 USDC" required min="1" class="depVault2">
+            <button class="depositVault2">внести</button>
+
+            <h2>Вывод депозита из Vault 2</h2>
+            Количество токенов: <input type="number" placeholder="1 PyUSD" required min="1" class="withVault2">
+            <button class="withdrawVault2">вывести</button>
+        </div> </div>
+
+        <div class="market_1">
+            <div>
+                <h2>Взять в долг в Market 1(USDC)</h2>
+                Количество токенов: <input type="number" placeholder="1 USDC" required min="1" class="borMarket1">
+                <button class="borrowMarket1">взять</button>
+
+                <h2>Внести в счет долга на Market 1(USDC)</h2>
+                Количество токенов: <input type="number" placeholder="1 USDC" required min="1" class="repMarket1">
+                <button class="repayMarket1">внести</button>
+            </div></div>
+
+            <div class="market_2">
+                <div>
+                    <h2>Взять в долг в Market 2(USDC)</h2>
+                    Количество токенов: <input type="number" placeholder="1 USDC" required min="1" class="borMarket2">
+                    <button class="borrowMarket2">взять</button>
+
+                    <h2>Внести в счет долга на Market 2(USDC)</h2>
+                    Количество токенов: <input type="number" placeholder="1 USDC" required min="1" class="repMarket2">
+                    <button class="repayMarket2">внести</button>
+                </div></div>
+
+                <div class="market_3">
+                    <div>
+                        <h2>Взять в долг в Market 3(USDC)</h2>
+                        Количество токенов: <input type="number" placeholder="1 USDC" required min="1" class="borMarket3">
+                        <button class="borrowMarket3">взять</button>
+
+                        <h2>Внести в счет долга на Market 3(USDC)</h2>
+                        Количество токенов: <input type="number" placeholder="1 USDC" required min="1" class="repMarket3">
+                        <button class="repayMarket3">внести</button>
+                    </div></div>
+                </div>
+
+                <script type="module" src="./init.js"></script>
+                <script type="module" src="./depositVault1.js"></script>
+                <script type="module" src="./depositVault2.js"></script>
+                <script type="module" src="./withdrawVault1.js"></script>
+                <script type="module" src="./withdrawVault2.js"></script>
+</body>
+
+</html>

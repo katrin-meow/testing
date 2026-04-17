@@ -17,7 +17,7 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "liquidator",
+						"name": "liquidator_",
 						"type": "address"
 					},
 					{
@@ -43,44 +43,6 @@
 					{
 						"internalType": "uint256",
 						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "borrower",
-						"type": "address"
-					}
-				],
-				"name": "_isHealthy",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "_sharesForBorrowAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "shares",
 						"type": "uint256"
 					}
 				],
@@ -160,25 +122,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "borrowers",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "collateralToken",
 				"outputs": [
@@ -199,7 +142,7 @@
 						"type": "address"
 					}
 				],
-				"name": "currentLltvBps",
+				"name": "currentLtvBps",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -259,12 +202,7 @@
 							},
 							{
 								"internalType": "address",
-								"name": "liquidator",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "treasury",
+								"name": "vault",
 								"type": "address"
 							},
 							{
@@ -284,7 +222,12 @@
 							},
 							{
 								"internalType": "address",
-								"name": "vault",
+								"name": "treasury",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "liquidator",
 								"type": "address"
 							},
 							{
@@ -423,7 +366,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -574,19 +517,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "newLiquidator",
-						"type": "address"
-					}
-				],
-				"name": "setLiquidator",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "newLltvBps",
 						"type": "uint256"
@@ -603,19 +533,6 @@
 					}
 				],
 				"name": "setRiskParams",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newTreasury",
-						"type": "address"
-					}
-				],
-				"name": "setTreasury",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -779,7 +696,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"protocol/Market.sol": "Market"
+			"contracts/protocol/Market.sol": "Market"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -793,7 +710,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"acess/Ownable.sol": {
+		"contracts/acess/Ownable.sol": {
 			"keccak256": "0x9a087a010e405326c1b499a70a1bed094a8517285d60dad8fe765bd3f47a66f8",
 			"license": "MIT",
 			"urls": [
@@ -801,7 +718,7 @@
 				"dweb:/ipfs/QmSy4tEuWQoFyVeyzRr5ZjF2MwV3xCNr4tVq2EbqEkwiWF"
 			]
 		},
-		"interfaces/IERC20.sol": {
+		"contracts/interfaces/IERC20.sol": {
 			"keccak256": "0xa10692a388f8cf3134dee3f010b7bc785634d7db5f9cdca242248a93f157ae6f",
 			"license": "MIT",
 			"urls": [
@@ -809,7 +726,15 @@
 				"dweb:/ipfs/QmRnzyBFNSQwW7X8kyeVdBMGxeTYYFVmuFXZdRnL5Z8swt"
 			]
 		},
-		"interfaces/IMarket.sol": {
+		"contracts/interfaces/IERC20Meta.sol": {
+			"keccak256": "0x9b2021d435b8fe2e1c6b5bf59e6ac7c54d9d1406dd2bf0c999978c46cc099f89",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d4a0327fd05a4c3740fede8556b269683b84a250fb69d5d560580dbbb7c290ef",
+				"dweb:/ipfs/QmPZv57aLu7i5BN1P7uU6J3Jsv8jSAXJ4J6xnuDRMMakDE"
+			]
+		},
+		"contracts/interfaces/IMarket.sol": {
 			"keccak256": "0xe19aee83531b60e499e4b4e8b1f0eb9b69a14c5ac576eb6d2058b314eaf3f51f",
 			"license": "MIT",
 			"urls": [
@@ -817,7 +742,7 @@
 				"dweb:/ipfs/QmPA7YTrqC71NM5CukgStTthNq8nzGkcQUn8o8kaqS6sML"
 			]
 		},
-		"interfaces/IOracle.sol": {
+		"contracts/interfaces/IOracle.sol": {
 			"keccak256": "0xeebc4c7bb495a8a60248b4081b33a1d66cd583e050d3e6aebbb10fcb489b478c",
 			"license": "MIT",
 			"urls": [
@@ -825,15 +750,15 @@
 				"dweb:/ipfs/QmdFU1wkNNnxKfuEpTY9frK6YrtTEX6QeE3FbaePJsyExu"
 			]
 		},
-		"protocol/Market.sol": {
-			"keccak256": "0x797b336308a1d0ddc189ae928b622d43ea945d4cb1941a8a8c7c14be0a41b2a0",
+		"contracts/protocol/Market.sol": {
+			"keccak256": "0x29f9e27f2dd9b86573a38de9675373a9d2d71bf98c4f2c19028c81863cadacfb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c044f0d81048db6e107a3f5b726c28fedf773eed49b1b3fb7a0f83ce06482a8f",
-				"dweb:/ipfs/QmWhHUjPZWmoj9dKgCeGhT9BYZTJzt4CtNTxnF8nZWv8VQ"
+				"bzz-raw://6e5e52c4317f14077ea23f13c9273fbefba5ec1da28952a5d8c1d82f4a421c30",
+				"dweb:/ipfs/QmS9F2FnEzfbTP8BfVYeKNRTNryh4d9eFzYaZiMf1cbUNu"
 			]
 		},
-		"proxy/UUPSUpgradeable.sol": {
+		"contracts/proxy/UUPSUpgradeable.sol": {
 			"keccak256": "0x934248c6a5fa885fb7f4f00a0732b6d9680018076f0472df070c87c111ec721b",
 			"license": "MIT",
 			"urls": [
@@ -841,7 +766,7 @@
 				"dweb:/ipfs/QmcHmap1ruPKM7nBwPHT4jrscpBZ5s8fw3vqBXksXyGTKD"
 			]
 		},
-		"utils/Init.sol": {
+		"contracts/utils/Init.sol": {
 			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
 			"license": "MIT",
 			"urls": [

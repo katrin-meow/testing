@@ -1,0 +1,54 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"stateVariables": {
+				"_initialized": {
+					"details": "Признак, что инициализация уже выполнена."
+				},
+				"_initializing": {
+					"details": "Признак, что инициализация выполняется прямо сейчас."
+				}
+			},
+			"title": "Одноразовая инициализация",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"utils/Init.sol": "Init"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"utils/Init.sol": {
+			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1a29b3e3d824643c9524b7fd61fba4463c02044de7f9ea91891b3510f1390cfb",
+				"dweb:/ipfs/QmYWB7bVHracatng2dXqsxvwWKoSJvHA9zhtT5MtA4paE1"
+			]
+		}
+	},
+	"version": 1
+}

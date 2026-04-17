@@ -127,9 +127,9 @@
 				"name": "decimals",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "",
-						"type": "uint256"
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -268,7 +268,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"interfaces/IERC20Meta.sol": "IERC20Meta"
+			"contracts/interfaces/IERC20Meta.sol": "IERC20Meta"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -282,7 +282,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"interfaces/IERC20.sol": {
+		"contracts/interfaces/IERC20.sol": {
 			"keccak256": "0xa10692a388f8cf3134dee3f010b7bc785634d7db5f9cdca242248a93f157ae6f",
 			"license": "MIT",
 			"urls": [
@@ -290,12 +290,12 @@
 				"dweb:/ipfs/QmRnzyBFNSQwW7X8kyeVdBMGxeTYYFVmuFXZdRnL5Z8swt"
 			]
 		},
-		"interfaces/IERC20Meta.sol": {
-			"keccak256": "0x848772f3b0501c2f99c9b4c346403ae8ed76b7299236fa813d95c59c724524f6",
+		"contracts/interfaces/IERC20Meta.sol": {
+			"keccak256": "0x9b2021d435b8fe2e1c6b5bf59e6ac7c54d9d1406dd2bf0c999978c46cc099f89",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8191a8c82873537fc0166aa9529ff96fb5f581b33cecf043ad0142611b9ca894",
-				"dweb:/ipfs/QmcwmpbLneLLFAZSDxt8bof6E31fSeEi6uLW37nDMBKwK8"
+				"bzz-raw://d4a0327fd05a4c3740fede8556b269683b84a250fb69d5d560580dbbb7c290ef",
+				"dweb:/ipfs/QmPZv57aLu7i5BN1P7uU6J3Jsv8jSAXJ4J6xnuDRMMakDE"
 			]
 		}
 	},
