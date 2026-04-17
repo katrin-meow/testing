@@ -11,6 +11,7 @@ import {UUPSUpgradeable} from "../proxy/UUPSUpgradeable.sol";
 
 contract Market is Ownable, IMarket, UUPSUpgradeable {
     uint public constant INDEX_SCALE = 1e18;
+    address[] public borrowers;
 
     struct Position {
         uint collateralShares;
@@ -207,6 +208,7 @@ contract Market is Ownable, IMarket, UUPSUpgradeable {
         totalBorrowShares += shares;
         require(_isHealthy(msg.sender));
         loanToken.transfer(msg.sender, amount);
+        borrowers.push(msg.sender);
     }
 
     function repay(uint amount) external returns (uint remainingDebt) {
@@ -221,8 +223,7 @@ contract Market is Ownable, IMarket, UUPSUpgradeable {
 
         uint principalPaid = p.principal > payAmount ? payAmount : p.principal;
         p.principal -= principalPaid;
-        protocolFeeBps +=
-            ((payAmount - principalPaid) * protocolFeeBps) / 1000;
+        protocolFeeBps += ((payAmount - principalPaid) * protocolFeeBps) / 1000;
 
         uint burnShares = payAmount == debt
             ? p.borrowShares
@@ -249,6 +250,8 @@ contract Market is Ownable, IMarket, UUPSUpgradeable {
 
         totalBorrowShares -= p.borrowShares;
         delete positions[borrower];
+        borrowers.pop();
+
         emit Liquidated(borrower, msg.sender, debt, reward);
     }
     function onVaultDeposit(uint amount) external onlyVault {}

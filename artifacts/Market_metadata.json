@@ -160,6 +160,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "borrowers",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "collateralToken",
 				"outputs": [
@@ -807,11 +826,11 @@
 			]
 		},
 		"protocol/Market.sol": {
-			"keccak256": "0x3d220216c389fe85a00bdb88b1a856e529d974ebafef9ca2c50e95d3a332070c",
+			"keccak256": "0x797b336308a1d0ddc189ae928b622d43ea945d4cb1941a8a8c7c14be0a41b2a0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://595ece18e2489312fd64f20756afaf410f18c9229e69429070b2552e43f75123",
-				"dweb:/ipfs/QmWa5dQz2qcq3dgmPvD3wbxUk7DVdTSXHj6ZZCNMYb27uV"
+				"bzz-raw://c044f0d81048db6e107a3f5b726c28fedf773eed49b1b3fb7a0f83ce06482a8f",
+				"dweb:/ipfs/QmWhHUjPZWmoj9dKgCeGhT9BYZTJzt4CtNTxnF8nZWv8VQ"
 			]
 		},
 		"proxy/UUPSUpgradeable.sol": {
