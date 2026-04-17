@@ -1,0 +1,432 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "borrower1",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "borrower2",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "borrower3",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lender1",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lender2",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lender3",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "liquidator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "market1",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "market2",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "market3",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "ownershipTransfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "proxiableUUID",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "b1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "b2",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "b3",
+						"type": "address"
+					}
+				],
+				"name": "setBorrowers",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "l1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "l2",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "l3",
+						"type": "address"
+					}
+				],
+				"name": "setLinders",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "l",
+						"type": "address"
+					}
+				],
+				"name": "setLiquidator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "m1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "m2",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "m3",
+						"type": "address"
+					}
+				],
+				"name": "setMarkets",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "t",
+						"type": "address"
+					}
+				],
+				"name": "setTreasury",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "v1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "v2",
+						"type": "address"
+					}
+				],
+				"name": "setVaults",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "treasury",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "upgradeTo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "upgradeToAndCall",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "vault1",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "vault2",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"proxiableUUID()": {
+					"notice": "UUID UUPS-слота по EIP-1822."
+				},
+				"upgradeTo(address)": {
+					"notice": "Обновить implementation."
+				},
+				"upgradeToAndCall(address,bytes)": {
+					"notice": "Обновить implementation и сразу вызвать migration-хук."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"protocol/AddressBook.sol": "AddressBook"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"acess/Ownable.sol": {
+			"keccak256": "0x9a087a010e405326c1b499a70a1bed094a8517285d60dad8fe765bd3f47a66f8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://021d1a9e64af60c52498dca2d93017c43665847dcfe8fa92fac56936651eb0e5",
+				"dweb:/ipfs/QmSy4tEuWQoFyVeyzRr5ZjF2MwV3xCNr4tVq2EbqEkwiWF"
+			]
+		},
+		"protocol/AddressBook.sol": {
+			"keccak256": "0x39cb122b4c8f907f97c48e49a4d5bfdff2b633edad635a7d92c4135a8adcfbe7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7e421cc49fa4af81127f290c6ffa296a7d51c9786aef358e6e88f7a43131d280",
+				"dweb:/ipfs/QmRymBQtX4eKtT5VY8WY25HvuziEk7Rq5XYZKdQVVnKGjv"
+			]
+		},
+		"proxy/UUPSUpgradeable.sol": {
+			"keccak256": "0x934248c6a5fa885fb7f4f00a0732b6d9680018076f0472df070c87c111ec721b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d6ee342244f113cd822f365791bf6fd8e9bc9ef7e944e3ff371ce3b3726256f7",
+				"dweb:/ipfs/QmcHmap1ruPKM7nBwPHT4jrscpBZ5s8fw3vqBXksXyGTKD"
+			]
+		},
+		"utils/Init.sol": {
+			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1a29b3e3d824643c9524b7fd61fba4463c02044de7f9ea91891b3510f1390cfb",
+				"dweb:/ipfs/QmYWB7bVHracatng2dXqsxvwWKoSJvHA9zhtT5MtA4paE1"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,104 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "implementation_",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "initData",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "implementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"params": {
+						"implementation_": "Адрес implementation-логики.",
+						"initData": "Данные вызова initialize, которые выполняются через delegatecall."
+					}
+				}
+			},
+			"stateVariables": {
+				"IMPLEMENTATION_SLOT": {
+					"details": "Слот implementation по EIP-1967."
+				}
+			},
+			"title": "Минимальный ERC1967-proxy для UUPS",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"constructor": {
+					"notice": "Конструктор прокси."
+				},
+				"implementation()": {
+					"notice": "Текущий implementation."
+				}
+			},
+			"notice": "Используется вместе с implementation-контрактами, наследующими UUPSUpgradeable",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"proxy/UUPSProxy.sol": "UUPSProxy"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"proxy/UUPSProxy.sol": {
+			"keccak256": "0xb51abbbe6f99d449e143917874d3e33092a2f7f40856f71c061e1c2940380564",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3cc3c5fab34516aced6577ad081fbda949c116bb91843600fc168dcf9b49036b",
+				"dweb:/ipfs/QmanpBNdYtxKDGaDaPXawNCw4gkH6SFSDXnNA53x1Y9hrb"
+			]
+		}
+	},
+	"version": 1
+}

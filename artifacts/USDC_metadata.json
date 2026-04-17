@@ -1,0 +1,343 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "initialHolder",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "initialSupply",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					}
+				],
+				"name": "allowance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "decimals",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Срабатывает при изменении allowance."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Срабатывает при переводе токенов."
+				}
+			},
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"allowance(address,address)": {
+					"notice": "Текущий allowance от owner к spender."
+				},
+				"approve(address,uint256)": {
+					"notice": "Установка allowance для spender."
+				},
+				"balanceOf(address)": {
+					"notice": "Баланс аккаунта."
+				},
+				"totalSupply()": {
+					"notice": "Общее количество токенов."
+				},
+				"transfer(address,uint256)": {
+					"notice": "Перевод токенов получателю."
+				},
+				"transferFrom(address,address,uint256)": {
+					"notice": "Перевод токенов по allowance."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"token/USDC.sol": "USDC"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interfaces/IERC20.sol": {
+			"keccak256": "0xa10692a388f8cf3134dee3f010b7bc785634d7db5f9cdca242248a93f157ae6f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3c06e9ae67b0f75df4a03e95a92fa62cde601d84163fd5c3bd3a130ce28ecf1a",
+				"dweb:/ipfs/QmRnzyBFNSQwW7X8kyeVdBMGxeTYYFVmuFXZdRnL5Z8swt"
+			]
+		},
+		"interfaces/IERC20Meta.sol": {
+			"keccak256": "0x848772f3b0501c2f99c9b4c346403ae8ed76b7299236fa813d95c59c724524f6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8191a8c82873537fc0166aa9529ff96fb5f581b33cecf043ad0142611b9ca894",
+				"dweb:/ipfs/QmcwmpbLneLLFAZSDxt8bof6E31fSeEi6uLW37nDMBKwK8"
+			]
+		},
+		"token/ERC20Upgradeable.sol": {
+			"keccak256": "0xa3134632e06f605954d8f2489e88c63580ff5fee27fcdc0c3a70f90c5db18ee8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://39e5fd52ddb7e8ca433e4a4ac97573975d00cdfa28febcad7ca732f57787fa14",
+				"dweb:/ipfs/Qma8YvRGKW6oaSHSnd9FU9Mv238y1pPVoCUoH3t6SHbPyW"
+			]
+		},
+		"token/USDC.sol": {
+			"keccak256": "0x0b62129d926f7035d11acfe01d5a8fa2deac09ef1caa9a53923491b0c8f9d089",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://833f0eccd3ecb1e1752c719375a9279fc1ac3ae9e5a2769e4f184db1943e699f",
+				"dweb:/ipfs/QmZokAN91wtpydZRWofey74T3AxY6TBBv6iirE2gCk8tVk"
+			]
+		},
+		"utils/Init.sol": {
+			"keccak256": "0x6b1d3a08a02b20e2812f136c472acda579f9888af16fd1cb31bb0aaf9b9c369e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1a29b3e3d824643c9524b7fd61fba4463c02044de7f9ea91891b3510f1390cfb",
+				"dweb:/ipfs/QmYWB7bVHracatng2dXqsxvwWKoSJvHA9zhtT5MtA4paE1"
+			]
+		}
+	},
+	"version": 1
+}

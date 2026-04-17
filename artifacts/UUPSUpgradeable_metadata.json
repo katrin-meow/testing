@@ -1,0 +1,110 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "proxiableUUID",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					}
+				],
+				"name": "upgradeTo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newImplementation",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "upgradeToAndCall",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"stateVariables": {
+				"IMPLEMENTATION_SLOT": {
+					"details": "Слот implementation по EIP-1967."
+				},
+				"__self": {
+					"details": "Адрес текущей implementation-логики, зафиксированный в bytecode."
+				}
+			},
+			"title": "Минимальная реализация UUPS",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"proxiableUUID()": {
+					"notice": "UUID UUPS-слота по EIP-1822."
+				},
+				"upgradeTo(address)": {
+					"notice": "Обновить implementation."
+				},
+				"upgradeToAndCall(address,bytes)": {
+					"notice": "Обновить implementation и сразу вызвать migration-хук."
+				}
+			},
+			"notice": "Обновление implementation выполняется через implementation-контракт",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"proxy/UUPSUpgradeable.sol": "UUPSUpgradeable"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"proxy/UUPSUpgradeable.sol": {
+			"keccak256": "0x934248c6a5fa885fb7f4f00a0732b6d9680018076f0472df070c87c111ec721b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d6ee342244f113cd822f365791bf6fd8e9bc9ef7e944e3ff371ce3b3726256f7",
+				"dweb:/ipfs/QmcHmap1ruPKM7nBwPHT4jrscpBZ5s8fw3vqBXksXyGTKD"
+			]
+		}
+	},
+	"version": 1
+}

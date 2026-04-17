@@ -1,0 +1,69 @@
+{
+	"id": "07c8a72bc1a220104084afe56662914b",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.30",
+	"solcLongVersion": "0.8.30+commit.73712a01",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"protocol/Vault.sol": {
+				"content": "// // SPDX-License-Identifier: MIT\npragma solidity ^0.8.30;\n\n\n\n// import {ERC4626Upgradeable} from \"../token/ERC4626Upgradeable.sol\";\n// import {Ownable} from \"../acess/Ownable.sol\";\n// import {IERC20} from \"../interfaces/IERC20.sol\";\n// import {IMarket} from \"../interfaces/IMarket.sol\";\n// import {SafeTransfer} from \"../utils/SafeTransfer.sol\";\n// import {UUPSUpgradeable} from \"../proxy/UUPSUpgradeable.sol\";\n\n// contract Vault is Ownable, ERC4626Upgradeable, UUPSUpgradeable {\n//     using SafeTransfer for IERC20;\n\n//     string public titile;\n//     uint public minDeposit;\n//     address[] public markets;\n//     mapping(address => bool) public isMarket;\n\n//     function initialize(\n//         address owner_,\n//         address asset_,\n//         string calldata title_,\n//         string memory shareName_,\n//         string memory shareSymbol_,\n//         uint minDeposit_\n//     ) external initializer {\n//         __Ownable_init(owner_);\n//         __ERC4626_init(asset_, shareName_, shareSymbol_);\n//         minDeposit = minDeposit_;\n//     }\n\n//     function totalAssetc() public view override returns (uint) {\n//         IERC20 underlying = IERC20(asset());\n\n//         uint total = underlying.balanceOf(address(this));\n//         uint len = markets.length;\n//         for (uint i = 0; i < len; ) {\n//             if (isMarket[markets[i]])\n//                 total += IMarket(markets[i]).assetManage();\n//             unchecked {\n//                 ++i;\n//             }\n//         }\n//         return total;\n//     }\n//     function idleLiquidity() public view returns (uint) {\n//         return IERC20(asset()).balanceOf(address(this));\n//     }\n\n//     function deposit(\n//         uint assets_,\n//         address receiver\n//     ) public override returns (uint shares) {\n//         require(assets_ >= minDeposit);\n//         shares = super.deposit(assets_, receiver);\n//     }\n\n//     function mint(\n//         uint shares,\n//         address receiver\n//     ) public override returns (uint assets_) {\n//         assets_ = convertToAssets(shares);\n//         require(assets_ >= minDeposit);\n//         assets_ = super.mint(shares, receiver);\n//     }\n\n//     function withdraw(\n//         uint assets_,\n//         address receiver,\n//         address owner_\n//     ) external override returns (uint shares) {\n//         require(assets_ <= idleLiquidity());\n//         shares = super.withdraw(assets_, receiver, owner_);\n//     }\n\n//     function redeem(\n//         uint shares,\n//         address receiver,\n//         address owner_\n//     ) public override returns (uint assets_) {\n//         assets_ = convertToAssets(shares);\n//         require(assets_ <= idleLiquidity());\n//         assets_ = super.redeem(shares, receiver, owner_);\n//     }\n\n//     function allocateToMarket(address market_, uint amount) external onlyOwner {\n//         require(isMarket[market_]);\n//         require(amount <= idleLiquidity());\n//         IERC20(asset()).safeTransfer(market_, amount);\n//         IMarket(market_).onVaultDeposit(amount);\n//     }\n\n//     function deallocateFromMarket(\n//         address market_,\n//         uint amount\n//     ) external onlyOwner {\n//         require(isMarket[market_]);\n//         IMatket(market_).onVaultWithdraw(amount);\n//     }\n\n//     function setMinDeposit(uint newMinDeposit) external onlyOwner {\n//         minDeposit = newMinDeposit;\n//     }\n\n//     function addMarket(address market_) external onlyOwner {\n//         require(market_ != address(0));\n//         require(!isMarket[market_]);\n//         isMarket[market_] = true;\n//         markets.push(market_);\n//     }\n\n//     function removeMarket(address market_) external onlyOwner {\n//         require(market_ != address(0));\n//         require(isMarket[market_]);\n//         isMarket[market_] = false;\n\n//         uint len = markets.length;\n//         for (uint i = 0; i < len) {\n//             if (markets[i] == market_) {\n//                 markets[i] = markets(len - 1);\n//                 markets.pop();\n//             }\n//             unchecked {\n//                 ++i;\n//             }\n//         }\n//     }\n\n//     function marketCount() external  view returns (uint) {\n//         return markets.length;\n//     }\n\n//     function _authorizeUpgrade(address) internal override onlyOwner {}\n// }\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"sources": {
+			"protocol/Vault.sol": {
+				"ast": {
+					"absolutePath": "protocol/Vault.sol",
+					"exportedSymbols": {},
+					"id": 2,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".30"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "35:24:0"
+						}
+					],
+					"src": "35:4281:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

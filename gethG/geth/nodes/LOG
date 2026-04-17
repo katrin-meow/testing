@@ -1,0 +1,8 @@
+=============== Apr 15, 2026 (MSK) ===============
+12:17:00.012227 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+12:17:00.020385 db@open opening
+12:17:00.020902 version@stat F·[] S·0B[] Sc·[]
+12:17:00.026563 db@janitor F·2 G·0
+12:17:00.026592 db@open done T·6.193833ms
+12:17:09.465798 db@close closing
+12:17:09.465989 db@close done T·169.167µs
