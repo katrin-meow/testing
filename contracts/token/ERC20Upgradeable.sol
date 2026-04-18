@@ -38,7 +38,7 @@ contract ERC20Upgradeable is Init, IERC20Meta {
         return _symbol;
     }
 
-    function decimals() external view returns (uint) {
+    function decimals() external view returns (uint8) {
         return _decimals;
     }
 

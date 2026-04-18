@@ -8,215 +8,125 @@ import {IERC20Meta} from "../interfaces/IERC20Meta.sol";
 import {IMarket} from "../interfaces/IMarket.sol";
 import {IOracle} from "../interfaces/IOracle.sol";
 import {Ownable} from "../acess/Ownable.sol";
-import {UUPSUpgradeable} from "../proxy/UUPSUpgradeable.sol";
 
-contract Market is Ownable, IMarket, UUPSUpgradeable {
-
-
-    uint256 public constant INDEX_SCALE = 1e18;
+contract Market is Ownable, IMarket {
+    uint public constant INDEX_SCALE = 1e18;
+    address[] public borrowers;
 
     struct Position {
-        uint256 collateralShares;
-        uint256 borrowShares;
-        uint256 principal;
+        uint borrowShares;
+        uint collateralShares;
+        uint principal;
     }
 
     struct InitParams {
         address owner;
         address vault;
+        address liquidator;
+        address treasury;
         address loanToken;
         address collateralToken;
         address oracle;
-        address treasury;
-        address liquidator;
-        uint256 lltvBps;
-        uint256 interestRate;
-        uint256 blocksPerYear;
-        uint256 liquidationBonusBps;
+        uint lltvBps;
+        uint interestRate;
+        uint blocksPerYear;
+        uint liquidationBonusBps;
     }
-//["0x71562b71999873DB5b286dF957af199Ec94617F7","0xcAb99AFdafCB2D9452f481017b94888E876EadB7","0x3CB5b6E26e0f37F2514D45641F15Bd6fEC2E0c4c","0x319b4b3b71398EABaDae47ccEA2e1e6be3e83056","0xD73F34428098B44A589f13Ad15A0e3D2eFE92DBD","0x71562b71999873DB5b286dF957af199Ec94617F7","0x71562b71999873DB5b286dF957af199Ec94617F7",8500,35000000000,2102400,2000]
+
     IERC20 public loanToken;
     IERC20 public collateralToken;
     IOracle public oracle;
+
     string public title;
     string public shareName;
+
     address public vault;
     address public treasury;
     address public liquidator;
-    uint256 public lltvBps;
-    uint256 public liquidationBonusBps;
-    uint256 public protocolFeeBps;
-    uint256 public interestRate;
-    uint256 public blocksPerYear;
-    uint256 public borrowIndex;
-    uint256 public lastAccrueBlock;
-    uint256 public totalBorrowShares;
-    uint256 public protocolReserves;
+
+    uint public lltvBps;
+    uint public interestRate;
+    uint public blocksPerYear;
+    uint public liquidationBonusBps;
+    uint public protocolReserves;
+    uint public protocolFeeBps;
+    uint public totalBorrowShares;
+    uint public borrowIndex;
+    uint public lastAccrueBlock;
+
     mapping(address => Position) public positions;
 
-    event Liquidated(address indexed borrower, address indexed liquidator_, uint256 debt, uint256 rewardCollateral);
-
     modifier onlyVault() {
-        require(msg.sender == vault, "NOT_VAULT");
+        require(msg.sender == vault);
         _;
     }
 
     modifier onlyLiquidatorOrOwner() {
-        require(msg.sender == liquidator || msg.sender == owner, "NOT_LIQUIDATOR");
+        require(msg.sender == liquidator || msg.sender == owner);
         _;
     }
 
-    function initialize(InitParams calldata p, string calldata title_, string calldata shareName_) external initializer {
-        require(p.vault != address(0), "ZERO_VAULT");
-        require(p.loanToken != address(0), "ZERO_LOAN");
-        require(p.collateralToken != address(0), "ZERO_COLLATERAL");
-        require(p.oracle != address(0), "ZERO_ORACLE");
-        require(p.treasury != address(0), "ZERO_TREASURY");
-        require(p.blocksPerYear > 0, "ZERO_BPY");
-        require(p.lltvBps <= 10000, "BAD_LLTV");
-        require(p.liquidationBonusBps <= 10000, "BAD_LIQ_BONUS");
+    event Liquidated(
+        address indexed borrower,
+        address indexed liquidator,
+        uint debt,
+        uint rewardCollateral
+    );
+
+    function initialize(
+        InitParams calldata p,
+        string calldata title_,
+        string calldata shareName_
+    ) external initializer {
         __Ownable_init(p.owner);
-        vault = p.vault;
+
+        title = title_;
+        shareName = shareName_;
+
         loanToken = IERC20(p.loanToken);
         collateralToken = IERC20(p.collateralToken);
         oracle = IOracle(p.oracle);
-        treasury = p.treasury;
+
         liquidator = p.liquidator;
-        title = title_;
-        shareName = shareName_;
-        lltvBps = p.lltvBps;
+        treasury = p.treasury;
+        vault = p.vault;
+
         interestRate = p.interestRate;
-        blocksPerYear = p.blocksPerYear;
-        liquidationBonusBps = p.liquidationBonusBps;
+        lltvBps = p.lltvBps;
         protocolFeeBps = 3000;
         borrowIndex = INDEX_SCALE;
+        blocksPerYear = p.blocksPerYear;
         lastAccrueBlock = block.number;
+        liquidationBonusBps = p.liquidationBonusBps;
     }
 
     function accrueInterest() public {
         if (block.number == lastAccrueBlock) return;
         if (totalBorrowShares > 0) {
-            uint256 deltaBlocks = block.number - lastAccrueBlock;
-            uint256 growth = (interestRate * deltaBlocks) / blocksPerYear;
+            uint deltaBlocks = block.number - lastAccrueBlock;
+            uint growth = (interestRate * deltaBlocks) / INDEX_SCALE;
             borrowIndex += (borrowIndex * growth) / INDEX_SCALE;
         }
         lastAccrueBlock = block.number;
     }
 
-    function availableLiquidity() public view returns (uint256) {
-        uint256 bal = loanToken.balanceOf(address(this));
+    function availableLiquidity() public view returns (uint) {
+        uint bal = oracle.getPrice(address(loanToken));
         return bal <= protocolReserves ? 0 : bal - protocolReserves;
     }
 
-    function totalDebt() public view returns (uint256) {
-        return totalBorrowShares == 0 ? 0 : (totalBorrowShares * _projectedBorrowIndex()) / INDEX_SCALE;
+    function _projectedBorrowIndex() internal view returns (uint index) {
+        index = borrowIndex;
+        if (block.number == lastAccrueBlock && totalBorrowShares > 0) {
+            uint deltaBlocks = block.number - lastAccrueBlock;
+            uint growth = (interestRate * deltaBlocks) / INDEX_SCALE;
+            index += (index * growth) / INDEX_SCALE;
+        }
     }
 
-    function assetManage() public view returns (uint256) {
-        return availableLiquidity() + totalDebt();
-    }
-
-    function debtOf(address borrower) public view returns (uint256) {
-        uint256 shares = positions[borrower].borrowShares;
-        return shares == 0 ? 0 : (shares * _projectedBorrowIndex()) / INDEX_SCALE;
-    }
-
-    function currentLtvBps(address borrower) public view returns (uint256) {
-        Position storage p = positions[borrower];
-        uint256 debt = debtOf(borrower);
-        if (debt == 0) return 0;
-        if (p.collateralShares == 0) return type(uint256).max;
-        uint256 debtValue = _tokenValue(debt, address(loanToken));
-        uint256 collateralValue = _tokenValue(p.collateralShares, address(collateralToken));
-        if (collateralValue == 0) return type(uint256).max;
-        return (debtValue * 10000) / collateralValue;
-    }
-
-    function healthFactor(address borrower) public view returns (uint256) {
-        uint256 ltv = currentLtvBps(borrower);
-        if (ltv == 0) return type(uint256).max;
-        return (lltvBps * INDEX_SCALE) / ltv;
-    }
-
-    function supplyCollateral(uint256 amount) external {
-        require(amount > 0, "ZERO_AMOUNT");
-        collateralToken.transferFrom(msg.sender, address(this), amount);
-        positions[msg.sender].collateralShares += amount;
-    }
-
-    function withdrawCollateral(uint256 amount) external {
-        require(amount > 0, "ZERO_AMOUNT");
-        accrueInterest();
-        Position storage p = positions[msg.sender];
-        require(amount <= p.collateralShares, "EXCEEDS_COLLATERAL");
-        p.collateralShares -= amount;
-        require(_isHealthy(msg.sender), "WOULD_BE_LIQUIDATABLE");
-        collateralToken.transfer(msg.sender, amount);
-    }
-
-    function borrow(uint256 amount) external {
-        require(amount > 0, "ZERO_AMOUNT");
-        accrueInterest();
-        require(amount <= availableLiquidity(), "INSUFFICIENT_LIQUIDITY");
-        Position storage p = positions[msg.sender];
-        uint256 shares = _sharesForBorrowAmount(amount);
-        p.borrowShares += shares;
-        p.principal += amount;
-        totalBorrowShares += shares;
-        require(_isHealthy(msg.sender), "BORROW_BREAKS_LLTV");
-        loanToken.transfer(msg.sender, amount);
-    }
-
-    function repay(uint256 amount) external returns (uint256 remainingDebt) {
-        require(amount > 0, "ZERO_AMOUNT");
-        accrueInterest();
-        Position storage p = positions[msg.sender];
-        uint256 debt = debtOf(msg.sender);
-        require(debt > 0, "NO_DEBT");
-        uint256 payAmount = amount > debt ? debt : amount;
-        loanToken.transferFrom(msg.sender, address(this), payAmount);
-        uint256 principalPaid = p.principal > payAmount ? payAmount : p.principal;
-        p.principal -= principalPaid;
-        protocolReserves += ((payAmount - principalPaid) * protocolFeeBps) / 10000;
-        uint256 burnShares = payAmount == debt ? p.borrowShares : (payAmount * INDEX_SCALE) / borrowIndex;
-        if (burnShares > p.borrowShares) burnShares = p.borrowShares;
-        p.borrowShares -= burnShares;
-        totalBorrowShares -= burnShares;
-        remainingDebt = debtOf(msg.sender);
-    }
-
-    function liquidate(address borrower) external onlyLiquidatorOrOwner {
-        accrueInterest();
-        require(!_isHealthy(borrower), "POSITION_HEALTHY");
-        Position storage p = positions[borrower];
-        uint256 debt = debtOf(borrower);
-        require(debt > 0, "NO_DEBT");
-        uint256 reward = (p.collateralShares * liquidationBonusBps) / 10000;
-        uint256 remainder = p.collateralShares - reward;
-        if (reward > 0) collateralToken.transfer(msg.sender, reward);
-        if (remainder > 0) collateralToken.transfer(treasury, remainder);
-        totalBorrowShares -= p.borrowShares;
-        delete positions[borrower];
-        emit Liquidated(borrower, msg.sender, debt, reward);
-    }
-
-    function onVaultDeposit(uint256) external onlyVault {}
-
-    function onVaultWithdraw(uint256 amount) external onlyVault {
-        require(amount <= availableLiquidity(), "INSUFFICIENT_LIQUIDITY");
-        loanToken.transfer(vault, amount);
-    }
-
-    function setRiskParams(uint256 newLltvBps, uint256 newInterestRate, uint256 newLiquidationBonusBps) external onlyOwner {
-        require(newLltvBps <= 10000, "BAD_LLTV");
-        require(newLiquidationBonusBps <= 10000, "BAD_LIQ_BONUS");
-        accrueInterest();
-        lltvBps = newLltvBps;
-        interestRate = newInterestRate;
-        liquidationBonusBps = newLiquidationBonusBps;
-    }
-
-    function _sharesForBorrowAmount(uint256 amount) internal view returns (uint256 shares) {
+    function _sharesForBorrowAmount(
+        uint amount
+    ) internal view returns (uint shares) {
         shares = (amount * INDEX_SCALE) / borrowIndex;
         if (shares == 0) shares = 1;
     }
@@ -225,19 +135,128 @@ contract Market is Ownable, IMarket, UUPSUpgradeable {
         return currentLtvBps(borrower) < lltvBps;
     }
 
-    function _projectedBorrowIndex() internal view returns (uint256 index) {
-        index = borrowIndex;
-        if (block.number > lastAccrueBlock && totalBorrowShares > 0) {
-            uint256 deltaBlocks = block.number - lastAccrueBlock;
-            uint256 growth = (interestRate * deltaBlocks) / blocksPerYear;
-            index += (index * growth) / INDEX_SCALE;
-        }
+    function totalDebt() public view returns (uint) {
+        return
+            totalBorrowShares == 0
+                ? 0
+                : (totalBorrowShares * _projectedBorrowIndex()) / INDEX_SCALE;
     }
 
-    function _tokenValue(uint256 amount, address token) internal view returns (uint256) {
-        uint8 decimals = IERC20Meta(token).decimals();
-        return (amount * oracle.getPrice(token)) / (10 ** decimals);
+    function debtOf(address borrower) public view returns (uint) {
+        uint shares = positions[borrower].borrowShares;
+        return
+            shares == 0 ? 0 : (shares * _projectedBorrowIndex()) / INDEX_SCALE;
     }
 
-    function _authorizeUpgrade(address) internal override onlyOwner {}
+    function assetManage() public view returns (uint) {
+        return availableLiquidity() + totalDebt();
+    }
+
+    function currentLtvBps(address borrower) public view returns (uint) {
+        Position storage p = positions[borrower];
+        uint debt = debtOf(borrower);
+
+        if (debt == 0) return 0;
+        if (p.collateralShares == 0) return type(uint).max;
+
+        return
+            (debt * oracle.getPrice(address(loanToken)) * 10000) /
+            (p.collateralShares * oracle.getPrice(address(collateralToken)));
+    }
+
+    function supplyCollateral(uint amount) external {
+        require(amount > 0);
+
+        collateralToken.transferFrom(msg.sender, address(this), amount);
+        positions[msg.sender].collateralShares += amount;
+    }
+
+    function withdrawCollateral(uint amount) external {
+        require(amount > 0);
+        Position storage p = positions[msg.sender];
+
+        p.collateralShares -= amount;
+        require(_isHealthy(msg.sender));
+        collateralToken.transfer(msg.sender, amount);
+    }
+
+    function healthFactor(address borrower) public view returns (uint) {
+        uint ltv = currentLtvBps(borrower);
+        if (ltv == 0) return type(uint).max;
+        return (lltvBps * INDEX_SCALE) / ltv;
+    }
+
+    function borrow(uint amount) external {
+        accrueInterest();
+
+        Position storage p = positions[msg.sender];
+
+        uint shares = _sharesForBorrowAmount(amount);
+        p.borrowShares += shares;
+        totalBorrowShares += shares;
+        p.principal += shares;
+
+        loanToken.transfer(msg.sender, amount);
+        borrowers.push(msg.sender);
+    }
+
+    function repay(uint amount) external returns (uint remainingDebt) {
+        accrueInterest();
+
+        Position storage p = positions[msg.sender];
+        uint debt = debtOf(msg.sender);
+
+        uint payAmount = amount > debt ? debt : amount;
+        loanToken.transferFrom(msg.sender, address(this), amount);
+
+        uint principalPaid = p.principal > payAmount ? payAmount : p.principal;
+        p.principal -= principalPaid;
+        protocolReserves +=
+            ((payAmount - principalPaid) * protocolFeeBps) / 10000;
+        uint burnShares = payAmount == debt
+            ? p.borrowShares
+            : (payAmount * INDEX_SCALE) / borrowIndex;
+
+        if (burnShares < p.borrowShares) burnShares = p.borrowShares;
+        p.borrowShares -= burnShares;
+        totalBorrowShares -= burnShares;
+        remainingDebt = debtOf(msg.sender);
+    }
+
+    function liquidate(address borrower) external onlyLiquidatorOrOwner {
+        accrueInterest();
+
+        Position storage p = positions[borrower];
+        uint debt = debtOf(borrower);
+
+        uint reward = (p.collateralShares * liquidationBonusBps) / 10000;
+        uint remainder = p.collateralShares - reward;
+
+        require(!_isHealthy(borrower));
+        loanToken.transfer(msg.sender, reward);
+        loanToken.transfer(treasury, remainder);
+
+        totalBorrowShares -= p.borrowShares;
+        delete positions[borrower];
+        borrowers.pop();
+        emit Liquidated(borrower, msg.sender, debt, reward);
+    }
+
+    function onVaultDeposit(uint amount) external onlyVault {}
+
+    function onVaultWithdraw(uint amount) external onlyVault {
+        loanToken.transfer(vault, amount);
+    }
+    function setRiskParams(
+        uint256 newLltvBps,
+        uint256 newInterestRate,
+        uint256 newLiquidationBonusBps
+    ) external onlyOwner {
+        require(newLltvBps <= 10000, "BAD_LLTV");
+        require(newLiquidationBonusBps <= 10000, "BAD_LIQ_BONUS");
+        accrueInterest();
+        lltvBps = newLltvBps;
+        interestRate = newInterestRate;
+        liquidationBonusBps = newLiquidationBonusBps;
+    }
 }

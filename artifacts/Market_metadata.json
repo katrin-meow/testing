@@ -17,7 +17,7 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "liquidator_",
+						"name": "liquidator",
 						"type": "address"
 					},
 					{
@@ -122,6 +122,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "borrowers",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "collateralToken",
 				"outputs": [
@@ -207,6 +226,16 @@
 							},
 							{
 								"internalType": "address",
+								"name": "liquidator",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "treasury",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
 								"name": "loanToken",
 								"type": "address"
 							},
@@ -218,16 +247,6 @@
 							{
 								"internalType": "address",
 								"name": "oracle",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "treasury",
-								"type": "address"
-							},
-							{
-								"internalType": "address",
-								"name": "liquidator",
 								"type": "address"
 							},
 							{
@@ -366,7 +385,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
@@ -439,12 +458,12 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "collateralShares",
+						"name": "borrowShares",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "borrowShares",
+						"name": "collateralShares",
 						"type": "uint256"
 					},
 					{
@@ -477,19 +496,6 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "proxiableUUID",
-				"outputs": [
-					{
-						"internalType": "bytes32",
-						"name": "",
-						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -616,37 +622,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newImplementation",
-						"type": "address"
-					}
-				],
-				"name": "upgradeTo",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newImplementation",
-						"type": "address"
-					},
-					{
-						"internalType": "bytes",
-						"name": "data",
-						"type": "bytes"
-					}
-				],
-				"name": "upgradeToAndCall",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "vault",
 				"outputs": [
@@ -680,17 +655,7 @@
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"proxiableUUID()": {
-					"notice": "UUID UUPS-слота по EIP-1822."
-				},
-				"upgradeTo(address)": {
-					"notice": "Обновить implementation."
-				},
-				"upgradeToAndCall(address,bytes)": {
-					"notice": "Обновить implementation и сразу вызвать migration-хук."
-				}
-			},
+			"methods": {},
 			"version": 1
 		}
 	},
@@ -751,19 +716,11 @@
 			]
 		},
 		"contracts/protocol/Market.sol": {
-			"keccak256": "0x29f9e27f2dd9b86573a38de9675373a9d2d71bf98c4f2c19028c81863cadacfb",
+			"keccak256": "0x095b53f242baa233451330565759e4728391c6d8df370e2284ddf1be64da3622",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6e5e52c4317f14077ea23f13c9273fbefba5ec1da28952a5d8c1d82f4a421c30",
-				"dweb:/ipfs/QmS9F2FnEzfbTP8BfVYeKNRTNryh4d9eFzYaZiMf1cbUNu"
-			]
-		},
-		"contracts/proxy/UUPSUpgradeable.sol": {
-			"keccak256": "0x934248c6a5fa885fb7f4f00a0732b6d9680018076f0472df070c87c111ec721b",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://d6ee342244f113cd822f365791bf6fd8e9bc9ef7e944e3ff371ce3b3726256f7",
-				"dweb:/ipfs/QmcHmap1ruPKM7nBwPHT4jrscpBZ5s8fw3vqBXksXyGTKD"
+				"bzz-raw://541e8682f0edc44dd9de6ac8eab12071aa726aac4560dab65c95202e8e56a3bd",
+				"dweb:/ipfs/QmRWmzqRxKXh4ez7medMk77t1vXmpdHSKCCbPoJ2KJnSE2"
 			]
 		},
 		"contracts/utils/Init.sol": {

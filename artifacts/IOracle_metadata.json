@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "getPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IOracle.sol": "IOracle"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IOracle.sol": {
+			"keccak256": "0xeebc4c7bb495a8a60248b4081b33a1d66cd583e050d3e6aebbb10fcb489b478c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://951ee3571dfdbc811e24d0a4091d9294db84a1a1df204085ca08c3ce96bd40db",
+				"dweb:/ipfs/QmdFU1wkNNnxKfuEpTY9frK6YrtTEX6QeE3FbaePJsyExu"
+			]
+		}
+	},
+	"version": 1
+}

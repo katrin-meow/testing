@@ -7,11 +7,8 @@ import {ERC4626Upgradeable} from "../token/ERC4626Upgradeable.sol";
 import {Ownable} from "../acess/Ownable.sol";
 import {IERC20} from "../interfaces/IERC20.sol";
 import {IMarket} from "../interfaces/IMarket.sol";
-import {UUPSUpgradeable} from "../proxy/UUPSUpgradeable.sol";
 
-contract Vault is Ownable, ERC4626Upgradeable, UUPSUpgradeable {
-    
-
+contract Vault is Ownable, ERC4626Upgradeable {
     string public title;
     uint256 public apy;
     uint256 public minDeposit;
@@ -34,49 +31,49 @@ contract Vault is Ownable, ERC4626Upgradeable, UUPSUpgradeable {
         minDeposit = minDeposit_;
     }
 
-    function totalAssets() public view override returns (uint256 total) {
+    function totalAssets() public view override returns (uint total) {
         total = IERC20(asset()).balanceOf(address(this));
-        uint256 len = markets.length;
-        for (uint256 i = 0; i < len; ) {
-            if (isMarket[markets[i]]) total += IMarket(markets[i]).assetManage();
+        for (uint i = 0; i < markets.length; ) {
+            if (isMarket[markets[i]])
+                total += IMarket(markets[i]).assetManage();
             unchecked {
                 ++i;
             }
         }
     }
-
-    function idleLiquidity() public view returns (uint256) {
+    function idleLiquidity() public view returns (uint shares) {
         return IERC20(asset()).balanceOf(address(this));
     }
 
-    function deposit(uint256 assets_, address receiver) public override returns (uint256 shares) {
-        require(assets_ >= minDeposit, "DEPOSIT_TOO_SMALL");
+    function deposit(
+        uint assets_,
+        address receiver
+    ) public override returns (uint shares) {
         shares = super.deposit(assets_, receiver);
     }
 
-    function withdraw(uint256 assets_, address receiver, address owner_) public override returns (uint256 shares) {
-        require(assets_ <= idleLiquidity(), "NO_FREE_LIQUIDITY");
-        shares = super.withdraw(assets_, receiver, owner_);
+    function withdraw(
+        uint assets_,
+        address receiver,
+        address owner
+    ) public override returns (uint shares) {
+        shares = super.withdraw(assets_, receiver, owner);
     }
 
-    function allocateToMarket(address market_, uint256 amount) external onlyOwner {
-        require(isMarket[market_], "UNKNOWN_MARKET");
-        require(amount <= idleLiquidity(), "NO_FREE_LIQUIDITY");
+    function allocateToMarket(address market_, uint amount) external onlyOwner {
         IERC20(asset()).transfer(market_, amount);
         IMarket(market_).onVaultDeposit(amount);
     }
 
-    function deallocateFromMarket(address market_, uint256 amount) external onlyOwner {
-        require(isMarket[market_], "UNKNOWN_MARKET");
+    function deallocateToMarket(
+        address market_,
+        uint amount
+    ) external onlyOwner {
         IMarket(market_).onVaultWithdraw(amount);
     }
 
     function addMarket(address market_) external onlyOwner {
-        require(market_ != address(0), "ZERO_MARKET");
-        require(!isMarket[market_], "MARKET_EXISTS");
         isMarket[market_] = true;
         markets.push(market_);
     }
-
-    function _authorizeUpgrade(address) internal override onlyOwner {}
 }

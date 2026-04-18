@@ -143,9 +143,9 @@
 				"name": "decimals",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "",
-						"type": "uint256"
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -307,11 +307,11 @@
 			]
 		},
 		"contracts/interfaces/IERC20Meta.sol": {
-			"keccak256": "0x848772f3b0501c2f99c9b4c346403ae8ed76b7299236fa813d95c59c724524f6",
+			"keccak256": "0x9b2021d435b8fe2e1c6b5bf59e6ac7c54d9d1406dd2bf0c999978c46cc099f89",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8191a8c82873537fc0166aa9529ff96fb5f581b33cecf043ad0142611b9ca894",
-				"dweb:/ipfs/QmcwmpbLneLLFAZSDxt8bof6E31fSeEi6uLW37nDMBKwK8"
+				"bzz-raw://d4a0327fd05a4c3740fede8556b269683b84a250fb69d5d560580dbbb7c290ef",
+				"dweb:/ipfs/QmPZv57aLu7i5BN1P7uU6J3Jsv8jSAXJ4J6xnuDRMMakDE"
 			]
 		},
 		"contracts/token/DAI.sol": {
@@ -323,11 +323,11 @@
 			]
 		},
 		"contracts/token/ERC20Upgradeable.sol": {
-			"keccak256": "0xa3134632e06f605954d8f2489e88c63580ff5fee27fcdc0c3a70f90c5db18ee8",
+			"keccak256": "0x12ba0e3092b1b802f88af33cbd6cf059ed8f8bba54e759db70e6c6df71429aed",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://39e5fd52ddb7e8ca433e4a4ac97573975d00cdfa28febcad7ca732f57787fa14",
-				"dweb:/ipfs/Qma8YvRGKW6oaSHSnd9FU9Mv238y1pPVoCUoH3t6SHbPyW"
+				"bzz-raw://bc0ec86b2036f7e22b2a1640aedbd1237831bbcb2f98846edeff0e5394eb2ebc",
+				"dweb:/ipfs/QmbATvu4yeEZJf88v8J62MGBoPNw7YCpmxcAVnTfwJPy33"
 			]
 		},
 		"contracts/utils/Init.sol": {
